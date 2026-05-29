@@ -1,10 +1,35 @@
 {
   "baseEntities": {
-    "ANY": {}
+    "NONE": {}
   },
   "entities": {
-    "tile_0000": {
-      "scale": {"x": 8, "y": 8 } 
+    "bullet": {
+      "texture": "tile_0000",
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "baseClass": "Bullet",
+      "sensor": true
+    },
+    "ship": {
+      "texture": "ships/ship_0000",
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "components": {
+        "shoot": {}
+      }
     }
+  },
+  "layers": ["bullets", "planes", "background"],
+  "layersInfo": {
+    "bullets": {
+      "collidesWith": ["planes"]
+	},
+    "planes": {
+      "collidesWith": ["planes"]
+	}
   }
 }
