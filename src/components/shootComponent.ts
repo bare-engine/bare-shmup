@@ -34,7 +34,7 @@ export class ShootComponent extends Component
         var p = vecNorm.mul(25).add(this.go.position);
         bullet.SetPosition(p.x, p.y);
 
-        var speed = 1000;
+        var speed = (this.isPlayer ? 1000 : 200);
         var vec = vecNorm.mul(speed);
         bullet.SetVelocity(vec);
 

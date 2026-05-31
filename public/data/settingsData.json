@@ -31,11 +31,6 @@
       "visible": true,
       "hitboxType": "Circle",
       "baseEntity": "ANY_ENTITY",
-      "components": {
-        "alive": {
-          "maxHealth": 1
-        }
-      },
       "baseClass": "ArcadeObject",
       "sensor": true
     },
@@ -59,9 +54,12 @@
       "components": {
         "alive": {
           "maxHealth": 1
+        },
+        "shoot": {
+          "shootInterval": 1.2
         }
       },
-      "hitboxRadius": 11
+      "hitboxRadius": 13
     },
     "explosion": {
       "components": {

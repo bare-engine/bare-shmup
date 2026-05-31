@@ -23,7 +23,6 @@ export class AliveComponent extends Component
 
     OnCollisionStart(collidingObject: GameObject): void
     {
-        //trace("Collision with " + collidingObject.name);
         this.OnHit(1, collidingObject);
     }
 
@@ -46,7 +45,8 @@ export class AliveComponent extends Component
 
     async OnHit(damage: number, hitter: GameObject): Promise<void>
     {
-        hitter.Remove();
+        if (hitter.name == "bullet")
+            hitter.Remove();
 
         this.go.AddShader(FlashShader);
         
