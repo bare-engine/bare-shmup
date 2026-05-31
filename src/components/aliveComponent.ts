@@ -71,6 +71,8 @@ export class AliveComponent extends Component
     {
         componentController.RemoveComponentsFrom(this.go, [ParticleComponent]);
         this.SpawnExplosion();
+
+        events.emit("died", this.go);
         this.go.Remove();
     }
 

@@ -34,8 +34,16 @@ export class Game extends Scene
         events.persistent.on(BareEvent.pointer_move, this.OnPointerMove.bind(this));
         events.persistent.on(BareEvent.pointer_down, this.ToggleMouseLock.bind(this));
 
-        events.persistent.on(BareEvent.collision_start, (object1, object2) => {
-        });
+        events.persistent.on("died", this.OnDie.bind(this));
+    }
+
+    async OnDie(go: ArcadeObject)
+    {
+        if (go.name == "ship")
+        {
+            await wait(1.5);
+            bare.Restart();
+        }
     }
 
     OnStart()

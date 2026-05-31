@@ -20,7 +20,8 @@
     "enemy": {
       "baseEntity": "ship",
       "removeOnOutOfBounds": true,
-      "stayInBounds": false
+      "stayInBounds": false,
+      "sensor": true
     }
   },
   "entities": {
@@ -41,7 +42,7 @@
       "baseEntity": "ship",
       "components": {
         "alive": {
-          "maxHealth": 38
+          "maxHealth": 10
         },
         "shoot": {
           "isPlayer": true
