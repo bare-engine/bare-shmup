@@ -1,35 +1,90 @@
 {
   "baseEntities": {
-    "NONE": {}
+    "ANY_ENTITY": {
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "NONE": {},
+    "ship": {
+      "baseEntity": "ANY_ENTITY",
+      "components": {
+        "shoot": {},
+        "alive": {}
+      },
+      "baseClass": "ArcadeObject",
+      "hitboxType": "Circle",
+      "hitboxRadius": 3
+    },
+    "enemy": {
+      "baseEntity": "ship",
+      "removeOnOutOfBounds": true,
+      "stayInBounds": false
+    }
   },
   "entities": {
     "bullet": {
       "texture": "tile_0000",
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
+      "removeOnOutOfBounds": true,
+      "hitboxRadius": 3,
+      "visible": true,
+      "hitboxType": "Circle",
+      "baseEntity": "ANY_ENTITY",
+      "components": {
+        "alive": {
+          "maxHealth": 1
+        }
       },
-      "baseClass": "Bullet",
+      "baseClass": "ArcadeObject",
       "sensor": true
     },
     "ship": {
       "texture": "ships/ship_0000",
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      },
+      "hitboxType": "Circle",
+      "hitboxRadius": 5,
+      "baseEntity": "ship",
       "components": {
-        "shoot": {}
+        "alive": {
+          "maxHealth": 38
+        },
+        "shoot": {
+          "isPlayer": true
+        }
+      }
+    },
+    "enemy1": {
+      "texture": "ships/ship_0009",
+      "baseEntity": "enemy",
+      "components": {
+        "alive": {
+          "maxHealth": 1
+        }
+      },
+      "hitboxRadius": 11
+    },
+    "explosion": {
+      "components": {
+        "animation": {}
       }
     }
   },
-  "layers": ["bullets", "planes", "background"],
+  "animations": {
+    "explosion": {
+      "frames": ["tile_0005", "tile_0007", "tile_0008"],
+      "removeOnComplete": true
+    }
+  },
+  "layers": ["player", "bulletsPlayer", "bulletsEnemy", "enemies", "background"],
   "layersInfo": {
-    "bullets": {
-      "collidesWith": ["planes"]
-	},
-    "planes": {
-      "collidesWith": ["planes"]
-	}
+    "bulletsPlayer": {
+      "collidesWith": ["enemies"]
+    },
+    "bulletsEnemy": {
+      "collidesWith": ["player"]
+    },
+    "enemies": {
+      "collidesWith": ["player"]
+    }
   }
 }

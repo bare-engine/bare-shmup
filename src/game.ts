@@ -1,17 +1,31 @@
-import { ArcadePhysicsController, BareEvent, Events, GameObject, Scene, StartBare, TextureFilterMode, Vec2 } from 'bare-engine';
+import { AnimationComponent, BareEvent, Color, Events, Scene, StartBare, TextureFilterMode, Vec2 } from 'bare-engine';
+import { ArcadeObject, ArcadePhysicsController } from 'bare-engine/arcade';
 import settingsDataJson from '../public/data/settingsData.json';
+import { Layer } from './generated/layers';
+
+declare module "bare-engine"
+{
+    // EXTENDING THE COMPONENT INTERFACE WITH A METHOD
+    // SO THAT CallMethodOnAllComponents('Pop'); WORKS
+    interface IComponent 
+    {
+        OnHit?: (damage: number, hitter: ArcadeObject) => void
+        OnDie?: () => void
+    }
+}
 
 export class Game extends Scene
 {
-    ship: GameObject;
+    ship: ArcadeObject;
     
     private skipNextLockedMouseMove = false;
     private readonly maxPointerMove = 32;
-    
+
     constructor()
     {
-        bare.AddClass(ArcadePhysicsController)
-        
+        bare.AddClass(ArcadePhysicsController);
+        bare.AddClass(AnimationComponent);
+
         super(settingsDataJson);
     }
 
@@ -19,7 +33,29 @@ export class Game extends Scene
     {
         events.persistent.on(BareEvent.pointer_move, this.OnPointerMove.bind(this));
         events.persistent.on(BareEvent.pointer_down, this.ToggleMouseLock.bind(this));
+
+        events.persistent.on(BareEvent.collision_start, (object1, object2) => {
+        });
     }
+
+    OnStart()
+    {
+        this.ship = this.AddGameObject<ArcadeObject>('ship', Layer.PLAYER)
+            .SetPosition(bare.width * .5, bare.height * .5);
+    }
+
+    OnFixedUpdate(fixedDeltaTime: number): void
+    {
+        if (bare.count % 40 == 0)
+        {
+            const enemy = this.AddGameObject<ArcadeObject>('enemy1', Layer.ENEMIES)
+                .SetPosition(bare.width * Math.random(), 0)
+                .SetRotation(-180)
+                .SetVelocityXY(0, 100);
+        }
+    }
+
+
 
     async ToggleMouseLock({ isLeftButton }: Events['pointer_down'])
     {
@@ -35,14 +71,6 @@ export class Game extends Scene
 
         this.skipNextLockedMouseMove = true;
         await rapid.canvas.requestPointerLock();
-    }
-
-    OnStart()
-    {
-        this.ship = this.AddGameObject('ship')
-            .SetPosition(bare.width * .5, bare.height * .5)
-            .CenterPivot()
-            .SetScale(4);
     }
 
     OnPointerMove({ movedX, movedY }: Events['pointer_move'])
@@ -69,4 +97,9 @@ export class Game extends Scene
     }
 }
 
-StartBare(Game, {antiAlias: false, textureFilter: TextureFilterMode.NEAREST});
+StartBare(Game, {
+    backgroundColor: Color.fromHex("#def4f4"),
+    antiAlias: false,
+    textureFilter: TextureFilterMode.NEAREST,
+    resolution: { pixelScale: 3 }
+});

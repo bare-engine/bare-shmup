@@ -1,5 +1,6 @@
-import { Component, InspectorField } from "bare-engine";
-import { Bullet } from "../objects/bullet";
+import { Component, Helper, InspectorButton, InspectorField } from "bare-engine";
+import { Layer } from "../generated/layers";
+import { ArcadeObject } from "bare-engine/arcade";
 
 export class ShootComponent extends Component
 {
@@ -8,6 +9,9 @@ export class ShootComponent extends Component
 
     @InspectorField
     entityNameSpawn: string = "bullet";
+
+    @InspectorField
+    isPlayer: boolean = false;
 
     count: number = 0;
 
@@ -21,10 +25,19 @@ export class ShootComponent extends Component
         }
     }
 
+    @InspectorButton
     Shoot()
     {
-        var bullet = bScene.AddGameObject(this.entityNameSpawn) as Bullet;
-        bullet.SetPosition(this.go.position.x, this.go.position.y - 50);
-        bullet.SetVelocityXY(0, -1000)
+        var vecNorm = Helper.PointTowards(this.go.rotation + 90);
+        var bullet = bScene.AddGameObject<ArcadeObject>(this.entityNameSpawn, this.isPlayer ? Layer.BULLETS_PLAYER : Layer.BULLETS_ENEMY);
+        
+        var p = vecNorm.mul(25).add(this.go.position);
+        bullet.SetPosition(p.x, p.y);
+
+        var speed = 1000;
+        var vec = vecNorm.mul(speed);
+        bullet.SetVelocity(vec);
+
+        bullet.SetRotation(this.go.rotation);
     }
 }

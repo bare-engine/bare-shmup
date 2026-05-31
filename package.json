@@ -24,12 +24,12 @@
         "typescript": "5.9.3",
         "vite": "^6.3.5"
     },
-    "dependencies": {
-        "bare-engine": "file:../BareEngine"
-    },
     "bareEngine": {
         "index": {
             "title": "Bare Shmup"
         }
+    },
+    "dependencies": {
+        "bare-engine": "github:BareEngine/BareEngine"
     }
 }
