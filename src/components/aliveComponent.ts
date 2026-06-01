@@ -78,7 +78,7 @@ export class AliveComponent extends Component
 
     SpawnExplosion()
     {
-        var explosion = this.go.scene.AddGameObject("explosion");
+        var explosion = this.go.scene.AddGameObject("-explosion");
         explosion.SetPosition(this.go.position.x, this.go.position.y);
     }
 }

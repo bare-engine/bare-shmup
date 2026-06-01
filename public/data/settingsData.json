@@ -15,7 +15,8 @@
       },
       "baseClass": "ArcadeObject",
       "hitboxType": "Circle",
-      "hitboxRadius": 3
+      "hitboxRadius": 3,
+      "sensor": true
     },
     "enemy": {
       "baseEntity": "ship",
@@ -47,7 +48,8 @@
         "shoot": {
           "isPlayer": true
         }
-      }
+      },
+      "sensor": false
     },
     "enemy1": {
       "texture": "ships/ship_0009",
