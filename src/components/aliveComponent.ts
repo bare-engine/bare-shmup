@@ -1,4 +1,5 @@
 import { Component, Color, componentController, InspectorField, ParticleComponent, Save, TweenTo, FlashShader, GameObject } from "bare-engine";
+import { Data } from "../generated/assets";
 
 export class AliveComponent extends Component
 {
@@ -78,7 +79,7 @@ export class AliveComponent extends Component
 
     SpawnExplosion()
     {
-        var explosion = this.go.scene.AddGameObject("-explosion");
+        var explosion = this.go.scene.AddGameObject(Data.Entity.EXPLOSION);
         explosion.SetPosition(this.go.position.x, this.go.position.y);
     }
 }

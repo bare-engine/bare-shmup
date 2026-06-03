@@ -1,6 +1,6 @@
 import { Component, Helper, InspectorButton, InspectorField } from "bare-engine";
-import { Layer } from "../generated/layers";
 import { ArcadeObject } from "bare-engine/arcade";
+import { Data } from "../generated/assets";
 
 export class ShootComponent extends Component
 {
@@ -29,7 +29,7 @@ export class ShootComponent extends Component
     Shoot()
     {
         var vecNorm = Helper.PointTowards(this.go.rotation + 90);
-        var bullet = bScene.AddGameObject<ArcadeObject>(this.entityNameSpawn, this.isPlayer ? Layer.BULLETS_PLAYER : Layer.BULLETS_ENEMY);
+        var bullet = bScene.AddGameObject<ArcadeObject>(this.entityNameSpawn, this.isPlayer ? Data.Layer.BULLETS_PLAYER : Data.Layer.BULLETS_ENEMY);
         
         var p = vecNorm.mul(25).add(this.go.position);
         bullet.SetPosition(p.x, p.y);

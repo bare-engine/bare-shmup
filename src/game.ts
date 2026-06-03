@@ -1,7 +1,7 @@
 import { AnimationComponent, BareEvent, Color, Events, Scene, StartBare, TextureFilterMode, Vec2 } from 'bare-engine';
 import { ArcadeObject, ArcadePhysicsController } from 'bare-engine/arcade';
 import settingsDataJson from '../public/data/settingsData.json';
-import { Layer } from './generated/layers';
+import { Data } from './generated/assets';
 
 declare module "bare-engine"
 {
@@ -48,15 +48,15 @@ export class Game extends Scene
 
     OnStart()
     {
-        this.ship = this.AddGameObject<ArcadeObject>('ship', Layer.PLAYER)
+        this.ship = this.AddGameObject<ArcadeObject>(Data.Entity.SHIP, Data.Layer.PLAYER)
             .SetPosition(bare.width * .5, bare.height * .5);
     }
 
     OnFixedUpdate(fixedDeltaTime: number): void
     {
-        if (bare.count % 40 == 0)
+        if (bare.count % 10 == 0)
         {
-            const enemy = this.AddGameObject<ArcadeObject>('enemy1', Layer.ENEMIES)
+            const enemy = this.AddGameObject<ArcadeObject>(Data.Entity.ENEMY1, Data.Layer.ENEMIES)
                 .SetPosition(bare.width * Math.random(), 0)
                 .SetRotation(-180)
                 .SetVelocityXY(0, 100);
