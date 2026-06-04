@@ -65,11 +65,8 @@ export class Game extends Scene
 
 
 
-    async ToggleMouseLock({ isLeftButton }: Events['pointer_down'])
+    async ToggleMouseLock({ }: Events['pointer_down'])
     {
-        if (!isLeftButton)
-            return;
-
         if (document.pointerLockElement === rapid.canvas)
         {
             this.skipNextLockedMouseMove = false;

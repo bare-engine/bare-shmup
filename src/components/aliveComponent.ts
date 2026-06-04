@@ -71,15 +71,11 @@ export class AliveComponent extends Component
     OnDie(): void
     {
         componentController.RemoveComponentsFrom(this.go, [ParticleComponent]);
-        this.SpawnExplosion();
+        
+        this.go.scene.AddGameObject("explosion")
+            .SetPosition(this.go.position.x, this.go.position.y);
 
         events.emit("died", this.go);
         this.go.Remove();
-    }
-
-    SpawnExplosion()
-    {
-        var explosion = this.go.scene.AddGameObject(Data.Entity.EXPLOSION);
-        explosion.SetPosition(this.go.position.x, this.go.position.y);
     }
 }
