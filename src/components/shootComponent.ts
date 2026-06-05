@@ -1,4 +1,4 @@
-import { Bare, Component, Helper, InspectorButton, InspectorField } from "bare-engine";
+import { Bare, Component, Dropdown, Helper, InspectorButton, InspectorField, Save } from "bare-engine";
 import { ArcadeObject } from "bare-engine/arcade";
 import { Data } from "../generated/assets";
 
@@ -8,16 +8,8 @@ export class ShootComponent extends Component
     shootInterval: number = .5;
 
     @InspectorField
-    //entityNameSpawn: string = "bullet";
-
-    @InspectorField
-    entityNameSpawn = {
-        get: () => this._entityNameSpawn,
-        set: (entityNameSpawn: string) => this._entityNameSpawn = entityNameSpawn,
-        values: () => Bare.data.entities // MAKES IT A DROPDOWN
-    };
-
-    _entityNameSpawn: string = "bullet";
+    @Dropdown(Bare.data.entities)
+    entityNameSpawn: string = "bullet";
 
     @InspectorField
     isPlayer: boolean = false;
@@ -38,7 +30,7 @@ export class ShootComponent extends Component
     Shoot()
     {
         var vecNorm = Helper.PointTowards(this.go.rotation + 90);
-        var bullet = bScene.AddGameObject<ArcadeObject>(this._entityNameSpawn, this.isPlayer ? Data.Layer.BULLETS_PLAYER : Data.Layer.BULLETS_ENEMY);
+        var bullet = bScene.AddGameObject<ArcadeObject>(this.entityNameSpawn, this.isPlayer ? Data.Layer.BULLETS_PLAYER : Data.Layer.BULLETS_ENEMY);
         
         var p = vecNorm.mul(25).add(this.go.position);
         bullet.SetPosition(p.x, p.y);

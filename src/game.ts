@@ -1,16 +1,14 @@
-import { AnimationComponent, BareEvent, Color, Events, Scene, StartBare, TextureFilterMode, Vec2 } from 'bare-engine';
+import { AnimationComponent, BareEvent, Color, Events, GameObject, Scene, StartBare, TextureFilterMode, Vec2 } from 'bare-engine';
 import { ArcadeObject, ArcadePhysicsController } from 'bare-engine/arcade';
 import settingsDataJson from '../public/data/settingsData.json';
 import { Data } from './generated/assets';
 
 declare module "bare-engine"
 {
-    // EXTENDING THE COMPONENT INTERFACE WITH A METHOD
-    // SO THAT CallMethodOnAllComponents('Pop'); WORKS
-    interface IComponent 
+    interface Component
     {
-        OnHit?: (damage: number, hitter: ArcadeObject) => void
-        OnDie?: () => void
+        OnHit?(damage: number, hitter: GameObject): void | Promise<void>
+        OnDie?(): void
     }
 }
 
