@@ -75,7 +75,7 @@
       "removeOnComplete": true
     }
   },
-  "layers": ["player", "bulletsPlayer", "bulletsEnemy", "enemies", "background"],
+  "layers": ["player", "bulletsPlayer", "bulletsEnemy", "enemies"],
   "layersInfo": {
     "bulletsPlayer": {
       "collidesWith": ["enemies"]
