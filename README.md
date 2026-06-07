@@ -12,10 +12,9 @@
 </ol>
 <br>
 <h2>Features:</h2>
-<ol>
+<ul>
     <li>Collision layers</li>
     <li>Using pixelScale - scaling up resolution</li>
     <li>Shooting projectiles</li>
     <li>Custom component methods</li>
-</ol>
-<br>
+</ul>
