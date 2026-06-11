@@ -1,4 +1,4 @@
-import { Component, Color, componentController, InspectorField, ParticleComponent, Save, TweenTo, FlashShader, GameObject } from "bare-engine";
+import { Component, Color, InspectorField, ParticleComponent, Save, TweenTo, FlashShader, GameObject } from "bare-engine";
 import { Data } from "../generated/assets";
 
 export class AliveComponent extends Component
@@ -54,7 +54,7 @@ export class AliveComponent extends Component
         this.health -= damage;
         if (this.health <= 0)
         {
-            componentController.CallMethodOnComponentsOfObject("OnDie", this.go);
+            bare.component.CallMethodOnComponentsOfObject("OnDie", this.go);
             this.health = 0;
         }
         else
@@ -73,7 +73,7 @@ export class AliveComponent extends Component
         this.go.scene.AddGameObject("explosion")
             .SetPosition(this.go.position.x, this.go.position.y);
 
-        events.emit("died", this.go);
+        bare.events.emit("died", this.go);
         
         this.go.Remove();
     }

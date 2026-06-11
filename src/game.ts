@@ -29,10 +29,10 @@ export class Game extends Scene
 
     OnAwake()
     {
-        events.persistent.on(BareEvent.pointer_move, this.OnPointerMove.bind(this));
-        events.persistent.on(BareEvent.pointer_down, this.ToggleMouseLock.bind(this));
+        bare.events.persistent.on(BareEvent.pointer_move, this.OnPointerMove.bind(this));
+        bare.events.persistent.on(BareEvent.pointer_down, this.ToggleMouseLock.bind(this));
 
-        events.persistent.on("died", this.OnDie.bind(this));
+        bare.events.persistent.on("died", this.OnDie.bind(this));
     }
 
     async OnDie(go: ArcadeObject)
