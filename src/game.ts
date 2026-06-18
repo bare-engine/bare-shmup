@@ -13,6 +13,12 @@ declare module "bare-engine"
     }
 }
 
+class Watcher
+{
+    @InspectorField
+    get EnemiesInGame():int { return game.object.GetLayer(Data.Layer.ENEMIES).length }
+}
+
 export class Game extends Scene
 {
     ship: ArcadeObject;
@@ -23,6 +29,9 @@ export class Game extends Scene
     @InspectorField
     @Int
     enemySpawnInterval: int = 20;
+
+    @InspectorClass
+    watcher = new Watcher();
 
     constructor()
     {
@@ -109,7 +118,7 @@ export class Game extends Scene
     }
 }
 
-StartBare(Game, {
+var game = StartBare(Game, {
     backgroundColor: Color.fromHex("#def4f4"),
     antiAlias: false,
     textureFilter: TextureFilterMode.NEAREST,
