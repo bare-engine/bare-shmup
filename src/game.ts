@@ -15,8 +15,13 @@ declare module "bare-engine"
 
 class Watcher
 {
+    constructor(private scene: Scene) {}
+
     @InspectorField
-    get EnemiesInGame():int { return game.object.GetLayer(Data.Layer.ENEMIES).length }
+    get enemies():int { return this.scene.object.GetLayer(Data.Layer.ENEMIES).length }
+
+    @InspectorField
+    get bullets():int { return this.scene.object.GetLayer(Data.Layer.BULLETS_ENEMY).length + this.scene.object.GetLayer(Data.Layer.BULLETS_PLAYER).length }
 }
 
 export class Game extends Scene
@@ -31,7 +36,7 @@ export class Game extends Scene
     enemySpawnInterval: int = 20;
 
     @InspectorClass
-    watcher = new Watcher();
+    watcher = new Watcher(this);
 
     constructor()
     {
@@ -118,7 +123,7 @@ export class Game extends Scene
     }
 }
 
-var game = StartBare(Game, {
+StartBare(Game, {
     backgroundColor: Color.fromHex("#def4f4"),
     antiAlias: false,
     textureFilter: TextureFilterMode.NEAREST,
