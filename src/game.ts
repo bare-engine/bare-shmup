@@ -1,7 +1,8 @@
-import { AnimationComponent, BareEvent, Color, Events, GameObject, InspectorField, Int, Scene, StartBare, TextureFilterMode, Vec2 } from 'bare-engine';
+import { AnimationComponent, BareEvent, Color, Events, GameObject, InspectorButton, InspectorField, Int, Scene, StartBare, TextureFilterMode, Vec2 } from 'bare-engine';
 import { ArcadeObject, ArcadePhysicsController } from 'bare-engine/arcade';
 import settingsDataJson from '../public/data/settingsData.json';
 import { Data } from './generated/assets';
+import { InspectorClass } from '../../BareEngine/src/utils/decorators';
 
 declare module "bare-engine"
 {
@@ -21,7 +22,7 @@ export class Game extends Scene
 
     @InspectorField
     @Int
-    enemySpawnInterval: int = 10;
+    enemySpawnInterval: int = 20;
 
     constructor()
     {
@@ -58,14 +59,18 @@ export class Game extends Scene
     {
         if (bare.count % this.enemySpawnInterval == 0)
         {
-            const enemy = this.AddGameObject<ArcadeObject>(Data.Entity.ENEMY1, Data.Layer.ENEMIES)
-                .SetPosition(bare.width * Math.random(), 0)
-                .SetRotation(-180)
-                .SetVelocityXY(0, 100);
+            this.SpawnEnemy();
         }
     }
 
-
+    @InspectorButton
+    SpawnEnemy()
+    {
+        this.AddGameObject<ArcadeObject>(Data.Entity.ENEMY1, Data.Layer.ENEMIES)
+            .SetPosition(bare.width * Math.random(), 0)
+            .SetRotation(-180)
+            .SetVelocityXY(0, 100);
+    }
 
     async ToggleMouseLock({ }: Events['pointer_down'])
     {
