@@ -1,4 +1,4 @@
-import { AnimationComponent, BareEvent, Color, Events, GameObject, Scene, StartBare, TextureFilterMode, Vec2 } from 'bare-engine';
+import { AnimationComponent, BareEvent, Color, Events, GameObject, InspectorField, Int, Scene, StartBare, TextureFilterMode, Vec2 } from 'bare-engine';
 import { ArcadeObject, ArcadePhysicsController } from 'bare-engine/arcade';
 import settingsDataJson from '../public/data/settingsData.json';
 import { Data } from './generated/assets';
@@ -18,6 +18,10 @@ export class Game extends Scene
     
     private skipNextLockedMouseMove = false;
     private readonly maxPointerMove = 32;
+
+    @InspectorField
+    @Int
+    enemySpawnInterval: int = 10;
 
     constructor()
     {
@@ -52,7 +56,7 @@ export class Game extends Scene
 
     OnFixedUpdate(fixedDeltaTime: number): void
     {
-        if (bare.count % 10 == 0)
+        if (bare.count % this.enemySpawnInterval == 0)
         {
             const enemy = this.AddGameObject<ArcadeObject>(Data.Entity.ENEMY1, Data.Layer.ENEMIES)
                 .SetPosition(bare.width * Math.random(), 0)
