@@ -1,8 +1,7 @@
-import { AnimationComponent, BareEvent, Color, Events, GameObject, InspectorButton, InspectorField, Int, Scene, StartBare, TextureFilterMode, Vec2 } from 'bare-engine';
+import { AnimationComponent, BareEvent, Color, Events, GameObject, InspectorButton, InspectorClass, InspectorField, Int, Scene, StartBare, TextComponent, TextureFilterMode, Vec2 } from 'bare-engine';
 import { ArcadeObject, ArcadePhysicsController } from 'bare-engine/arcade';
 import settingsDataJson from '../public/data/settingsData.json';
 import { Data } from './generated/assets';
-import { InspectorClass } from '../../BareEngine/src/utils/decorators';
 
 declare module "bare-engine"
 {
