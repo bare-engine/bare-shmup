@@ -25,17 +25,7 @@
     }
   },
   "entities": {
-    "bullet": {
-      "texture": "tile_0000",
-      "removeOnOutOfBounds": true,
-      "hitboxRadius": 3,
-      "visible": true,
-      "hitboxType": "Circle",
-      "baseEntity": "ANY_ENTITY",
-      "baseClass": "ArcadeObject",
-      "sensor": true
-    },
-    "ship": {
+    "player": {
       "texture": "ships/ship_0000",
       "hitboxType": "Circle",
       "hitboxRadius": 5,
@@ -62,6 +52,16 @@
         }
       },
       "hitboxRadius": 13
+    },
+    "bullet": {
+      "texture": "tile_0000",
+      "removeOnOutOfBounds": true,
+      "hitboxRadius": 3,
+      "visible": true,
+      "hitboxType": "Circle",
+      "baseEntity": "ANY_ENTITY",
+      "baseClass": "ArcadeObject",
+      "sensor": true
     },
     "explosion": {
       "components": {

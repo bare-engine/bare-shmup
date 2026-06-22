@@ -3,26 +3,6 @@ import { ArcadeObject, ArcadePhysicsController } from 'bare-engine/arcade';
 import settingsDataJson from '../public/data/settingsData.json';
 import { Data } from './generated/assets';
 
-declare module "bare-engine"
-{
-    interface Component
-    {
-        OnHit?(damage: number, hitter: GameObject): void | Promise<void>
-        OnDie?(): void
-    }
-}
-
-class Watcher
-{
-    constructor(private scene: Scene) {}
-
-    @InspectorField
-    get enemies():int { return this.scene.object.GetLayer(Data.Layer.ENEMIES).length }
-
-    @InspectorField
-    get bullets():int { return this.scene.object.GetLayer(Data.Layer.BULLETS_ENEMY).length + this.scene.object.GetLayer(Data.Layer.BULLETS_PLAYER).length }
-}
-
 export class Game extends Scene
 {
     ship: ArcadeObject;
@@ -55,7 +35,7 @@ export class Game extends Scene
 
     async OnDie(go: ArcadeObject)
     {
-        if (go.name == "ship")
+        if (go.name == Data.Entity.PLAYER)
         {
             await wait(1.5);
             bare.Restart();
@@ -64,7 +44,7 @@ export class Game extends Scene
 
     OnStart()
     {
-        this.ship = this.AddGameObject<ArcadeObject>(Data.Entity.SHIP, Data.Layer.PLAYER)
+        this.ship = this.AddGameObject<ArcadeObject>(Data.Entity.PLAYER, Data.Layer.PLAYER)
             .SetPosition(bare.width * .5, bare.height * .5);
     }
 
@@ -120,6 +100,26 @@ export class Game extends Scene
 
         return movement.mul(scale);
     }
+}
+
+declare module "bare-engine"
+{
+    interface Component
+    {
+        OnHit?(damage: number, hitter: GameObject): void | Promise<void>
+        OnDie?(): void
+    }
+}
+
+class Watcher
+{
+    constructor(private scene: Scene) {}
+
+    @InspectorField
+    get enemies():int { return this.scene.object.GetLayer(Data.Layer.ENEMIES).length }
+
+    @InspectorField
+    get bullets():int { return this.scene.object.GetLayer(Data.Layer.BULLETS_ENEMY).length + this.scene.object.GetLayer(Data.Layer.BULLETS_PLAYER).length }
 }
 
 StartBare(Game, {
