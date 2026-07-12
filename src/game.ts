@@ -1,4 +1,4 @@
-import { AnimationComponent, BareEvent, Color, Events, GameObject, InspectorButton, InspectorClass, InspectorField, Int, Scene, StartBare, TextComponent, TextureFilterMode, Vec2 } from 'bare-engine';
+import { AnimationComponent, BareEvent, Color, Events, GameObject, Inspector, InspectorField, Scene, StartBare, TextComponent, TextureFilterMode, Vec2 } from 'bare-engine';
 import { ArcadeObject, ArcadePhysicsController } from 'bare-engine/arcade';
 import settingsDataJson from '../public/data/settingsData.json';
 import { Data } from './generated/assets';
@@ -11,10 +11,10 @@ export class Game extends Scene
     private readonly maxPointerMove = 32;
 
     @InspectorField
-    @Int
+    @Inspector.Int
     enemySpawnInterval: int = 20;
 
-    @InspectorClass
+    @Inspector.Class
     watcher = new Watcher(this);
 
     constructor()
@@ -56,7 +56,7 @@ export class Game extends Scene
         }
     }
 
-    @InspectorButton
+    @Inspector.Button
     SpawnEnemy()
     {
         this.AddGameObject<ArcadeObject>(Data.Entity.ENEMY1, Data.Layer.ENEMIES)
@@ -128,3 +128,5 @@ StartBare(Game, {
     textureFilter: TextureFilterMode.NEAREST,
     resolution: { pixelScale: 3 }
 });
+
+
