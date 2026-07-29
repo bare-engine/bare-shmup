@@ -4,6 +4,7 @@ import { Data } from "../generated/assets";
 export class AliveComponent extends Component
 {
     @Save
+    @InspectorField
     health: number = 0;
 
     @InspectorField
