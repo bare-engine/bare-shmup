@@ -1,10 +1,11 @@
-import { Bare, Component, Dropdown, Helper, InspectorButton, InspectorField, Save } from "bare-engine";
+import { Bare, Component, Dropdown, Helper, InspectorButton, InspectorField, Limit, Save } from "bare-engine";
 import { ArcadeObject } from "bare-engine/arcade";
 import { Data } from "../generated/assets";
+import { Decimal } from "../../../BareEngine/src/utils/decorators";
 
 export class ShootComponent extends Component
 {
-    @InspectorField
+    @InspectorField @Limit(0) @Decimal(2)
     shootInterval: number = .5;
 
     @InspectorField
