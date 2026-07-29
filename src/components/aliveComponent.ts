@@ -1,5 +1,4 @@
-import { Component, Color, InspectorField, ParticleComponent, Save, TweenTo, FlashShader, GameObject } from "bare-engine";
-import { Data } from "../generated/assets";
+import { Color, Component, FlashShader, GameObject, InspectorField, Save, TweenTo } from "bare-engine";
 
 export class AliveComponent extends Component
 {
