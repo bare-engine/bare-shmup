@@ -1,13 +1,14 @@
 {
-  "baseEntities": {
-    "ANY_ENTITY": {
+  "baseEntities": [
+    {
+      "name": "ANY",
       "pivot": {
         "x": 0.5,
         "y": 0.5
       }
     },
-    "ship": {
-      "baseEntity": "ANY_ENTITY",
+    {
+      "name": "ship",
       "components": {
         "shoot": {},
         "alive": {}
@@ -17,19 +18,21 @@
       "hitboxRadius": 3,
       "sensor": true
     },
-    "enemy": {
-      "baseEntity": "ship",
+    {
+      "name": "enemy",
+      "entity": "ship",
       "removeOnOutOfBounds": true,
       "stayInBounds": false,
       "sensor": true
     }
-  },
-  "entities": {
-    "player": {
+  ],
+  "entities": [
+    {
+      "name": "player",
       "texture": "ships/ship_0000",
       "hitboxType": "Circle",
       "hitboxRadius": 5,
-      "baseEntity": "ship",
+      "entity": "ship",
       "components": {
         "alive": {
           "maxHealth": 10
@@ -40,9 +43,10 @@
       },
       "sensor": false
     },
-    "enemy1": {
+    {
+      "name": "enemy1",
       "texture": "ships/ship_0009",
-      "baseEntity": "enemy",
+      "entity": "enemy",
       "components": {
         "alive": {
           "maxHealth": 1
@@ -53,22 +57,23 @@
       },
       "hitboxRadius": 13
     },
-    "bullet": {
+    {
+      "name": "bullet",
       "texture": "tile_0000",
       "removeOnOutOfBounds": true,
       "hitboxRadius": 3,
       "visible": true,
       "hitboxType": "Circle",
-      "baseEntity": "ANY_ENTITY",
       "baseClass": "ArcadeObject",
       "sensor": true
     },
-    "explosion": {
+    {
+      "name": "explosion",
       "components": {
         "animation": {}
       }
     }
-  },
+  ],
   "animations": {
     "explosion": {
       "frames": ["tile_0005", "tile_0007", "tile_0008"],
