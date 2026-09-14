@@ -28,7 +28,9 @@ export class Game extends Scene
     OnAwake()
     {
         bare.events.persistent.on(BareEvent.pointer_move, this.OnPointerMove.bind(this));
-        bare.events.persistent.on(BareEvent.pointer_down, this.ToggleMouseLock.bind(this));
+
+        if (!window.isMobile) // MOUSE LOCK ONLY ON PC
+            bare.events.persistent.on(BareEvent.pointer_down, this.ToggleMouseLock.bind(this));
 
         bare.events.persistent.on("died", this.OnDie.bind(this));
     }
@@ -80,16 +82,26 @@ export class Game extends Scene
 
     OnPointerMove({ movedX, movedY }: Events['pointer_move'])
     {
-        if (document.pointerLockElement !== rapid.canvas)
-            return;
+        var movement: Vec2;
 
-        if (this.skipNextLockedMouseMove)
+        if (!window.isMobile)
         {
-            this.skipNextLockedMouseMove = false;
-            return;
+            if (document.pointerLockElement !== rapid.canvas)
+                return;
+
+            if (this.skipNextLockedMouseMove)
+            {
+                this.skipNextLockedMouseMove = false;
+                return;
+            }
+
+            movement = this.ClampPointerMove(movedX, movedY, this.maxPointerMove);
+        }
+        else
+        {
+            movement = new Vec2(movedX, movedY);
         }
 
-        const movement = this.ClampPointerMove(movedX, movedY, this.maxPointerMove);
         this.ship.position = this.ship.position.add(movement);
     }
 
@@ -111,6 +123,7 @@ declare module "bare-engine"
     }
 }
 
+// A LITTLE EXTRA FOR THE INSPECTOR
 class Watcher
 {
     constructor(private scene: Scene) {}
