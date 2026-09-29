@@ -9,7 +9,7 @@ export class ShootComponent extends Component
     shootInterval: number = .5;
 
     @InspectorField
-    @Dropdown(Bare.data.entities)
+    @Dropdown(Bare.data.prefabs)
     entityNameSpawn: string = "bullet";
 
     @InspectorField

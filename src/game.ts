@@ -37,7 +37,7 @@ export class Game extends Scene
 
     async OnDie(go: ArcadeObject)
     {
-        if (go.name == Data.Entity.PLAYER)
+        if (go.name == Data.Prefab.PLAYER)
         {
             await wait(1.5);
             bare.Restart();
@@ -46,7 +46,7 @@ export class Game extends Scene
 
     OnStart()
     {
-        this.ship = this.AddGameObject<ArcadeObject>(Data.Entity.PLAYER, Data.Layer.PLAYER)
+        this.ship = this.AddGameObject<ArcadeObject>(Data.Prefab.PLAYER, Data.Layer.PLAYER)
             .SetPosition(bare.width * .5, bare.height * .5);
     }
 
@@ -61,7 +61,7 @@ export class Game extends Scene
     @Inspector.Button
     SpawnEnemy()
     {
-        this.AddGameObject<ArcadeObject>(Data.Entity.ENEMY1, Data.Layer.ENEMIES)
+        this.AddGameObject<ArcadeObject>(Data.Prefab.ENEMY1, Data.Layer.ENEMIES)
             .SetPosition(bare.width * Math.random(), 0)
             .SetRotation(-180)
             .SetVelocityXY(0, 100);

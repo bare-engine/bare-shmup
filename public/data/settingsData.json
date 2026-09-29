@@ -1,5 +1,5 @@
 {
-  "baseEntities": [
+  "basePrefabs": [
     {
       "name": "ANY",
       "pivot": {
@@ -20,19 +20,19 @@
     },
     {
       "name": "enemy",
-      "entity": "ship",
+      "extends": "ship",
       "removeOnOutOfBounds": true,
       "stayInBounds": false,
       "sensor": true
     }
   ],
-  "entities": [
+  "prefabs": [
     {
       "name": "player",
       "texture": "ships/ship_0000",
       "hitboxType": "Circle",
       "hitboxRadius": 5,
-      "entity": "ship",
+      "extends": "ship",
       "components": {
         "alive": {
           "maxHealth": 10
@@ -46,7 +46,7 @@
     {
       "name": "enemy1",
       "texture": "ships/ship_0009",
-      "entity": "enemy",
+      "extends": "enemy",
       "components": {
         "alive": {
           "maxHealth": 1
