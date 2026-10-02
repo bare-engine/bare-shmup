@@ -29,7 +29,7 @@ export class Game extends Scene
     {
         bare.events.persistent.on(BareEvent.pointer_move, this.OnPointerMove.bind(this));
 
-        if (!window.isMobile) // MOUSE LOCK ONLY ON PC
+        if (!bare.mobile) // MOUSE LOCK ONLY ON PC
             bare.events.persistent.on(BareEvent.pointer_down, this.ToggleMouseLock.bind(this));
 
         bare.events.persistent.on("died", this.OnDie.bind(this));
@@ -84,7 +84,7 @@ export class Game extends Scene
     {
         var movement: Vec2;
 
-        if (!window.isMobile)
+        if (!bare.mobile)
         {
             if (document.pointerLockElement !== rapid.canvas)
                 return;
