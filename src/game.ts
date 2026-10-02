@@ -11,7 +11,8 @@ export class Game extends Scene
     private readonly maxPointerMove = 32;
 
     @InspectorField
-    @Inspector.Int @Inspector.Limit(1)
+    @Inspector.Int
+    @Inspector.Limit(1)
     enemySpawnInterval: int = 20;
 
     @Inspector.Class

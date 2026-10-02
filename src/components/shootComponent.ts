@@ -5,7 +5,9 @@ import { Decimal } from "../../../BareEngine/src/utils/decorators";
 
 export class ShootComponent extends Component
 {
-    @InspectorField @Limit(0) @Decimal(2)
+    @InspectorField
+    @Limit(0)
+    @Decimal(2)
     shootInterval: number = .5;
 
     @InspectorField
