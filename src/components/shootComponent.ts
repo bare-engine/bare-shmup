@@ -1,20 +1,20 @@
-import { Bare, Component, Dropdown, Helper, InspectorButton, InspectorField, Limit, Save } from "bare-engine";
+import { Bare, Component, Dropdown, Helper, InspectorButton, Limit, SerializeField } from "bare-engine";
 import { ArcadeObject } from "bare-engine/arcade";
 import { Data } from "../generated/assets";
 import { Decimal } from "../../../BareEngine/src/utils/decorators";
 
 export class ShootComponent extends Component
 {
-    @InspectorField
+    @SerializeField
     @Limit(0)
     @Decimal(2)
     shootInterval: number = .5;
 
-    @InspectorField
+    @SerializeField
     @Dropdown(Bare.data.prefabs)
     entityNameSpawn: string = "bullet";
 
-    @InspectorField
+    @SerializeField
     isPlayer: boolean = false;
 
     count: number = 0;
