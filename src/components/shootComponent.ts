@@ -19,7 +19,7 @@ export class ShootComponent extends Component
 
     count: number = 0;
 
-    OnUpdate(delta: number): void
+    override OnUpdate(delta: number): void
     {
         this.count += delta;
         if (this.count > this.shootInterval)

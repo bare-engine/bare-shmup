@@ -26,7 +26,7 @@ export class Game extends Scene
         super(settingsDataJson);
     }
 
-    OnAwake()
+    override OnAwake()
     {
         bare.events.persistent.on(BareEvent.pointer_move, this.OnPointerMove.bind(this));
 
@@ -45,13 +45,13 @@ export class Game extends Scene
         }
     }
 
-    OnStart()
+    override OnStart()
     {
         this.ship = this.AddGameObject<ArcadeObject>(Data.Prefab.PLAYER, Data.Layer.PLAYER)
             .SetPosition(bare.width * .5, bare.height * .5);
     }
 
-    OnFixedUpdate(fixedDeltaTime: number): void
+    override OnFixedUpdate(fixedDeltaTime: number): void
     {
         if (bare.count % this.enemySpawnInterval == 0)
         {

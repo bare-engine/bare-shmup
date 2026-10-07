@@ -11,7 +11,7 @@ export class AliveComponent extends Component
     healthbarWidth: number = 16;
     healthbarAlpha:number = 0;
     
-    OnAdded(): void
+    override OnAdded(): void
     {
         // IF HEALTH WAS NOT SET BY INSPECTOR OR SAVE VALUE, SET IT TO MAX
         if (this.health == 0)
@@ -21,12 +21,12 @@ export class AliveComponent extends Component
         //this.health = Math.min(this.health, this.maxHealth);
     }
 
-    OnCollisionStart(collidingObject: GameObject): void
+    override OnCollisionStart(collidingObject: GameObject): void
     {
         this.OnHit(1, collidingObject);
     }
 
-    OnPostRender(): void
+    override OnPostRender(): void
     {
         if (this.healthbarAlpha == 0)
            return;
@@ -43,7 +43,7 @@ export class AliveComponent extends Component
         rapid.drawRect({x: x, y: y, width: this.healthbarWidth * this.health / this.maxHealth, height: 2, color: colorRed}); 
     }
 
-    async OnHit(damage: number, hitter: GameObject): Promise<void>
+    override async OnHit(damage: number, hitter: GameObject): Promise<void>
     {
         if (hitter.name == "bullet")
             hitter.Remove();
@@ -67,7 +67,7 @@ export class AliveComponent extends Component
         }
     }
     
-    OnDie(): void
+    override OnDie(): void
     {
         this.go.scene.AddGameObject("explosion")
             .SetPosition(this.go.position.x, this.go.position.y);
