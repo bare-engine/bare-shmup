@@ -5,7 +5,7 @@ import { Data } from './generated/assets';
 
 export class Game extends Scene
 {
-    ship: ArcadeObject;
+    ship!: ArcadeObject;
     
     private skipNextLockedMouseMove = false;
     private readonly maxPointerMove = 32;
