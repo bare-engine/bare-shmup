@@ -10,7 +10,7 @@ export class Game extends Scene
     private skipNextLockedMouseMove = false;
     private readonly maxPointerMove = 32;
 
-    @InspectorField
+    @Inspector.Field
     @Inspector.Int
     @Inspector.Limit(1)
     enemySpawnInterval: int = 20;
