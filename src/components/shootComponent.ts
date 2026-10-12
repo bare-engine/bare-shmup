@@ -33,7 +33,7 @@ export class ShootComponent extends Component
     Shoot()
     {
         var vecNorm = Helper.PointTowards(this.go.rotation - 90);
-        var bullet = bScene.AddGameObject<ArcadeObject>(this.entityNameSpawn, this.isPlayer ? Data.Layer.BULLETS_PLAYER : Data.Layer.BULLETS_ENEMY);
+        var bullet = this.scene.AddGameObject<ArcadeObject>(this.entityNameSpawn, this.isPlayer ? Data.Layer.BULLETS_PLAYER : Data.Layer.BULLETS_ENEMY);
         
         var p = vecNorm.mul(25).add(this.go.position);
         bullet.SetPosition(p.x, p.y);
