@@ -62,7 +62,8 @@ export class AliveComponent extends Component
             // persistent FIELD IS NEEDED, SO THE TWEEN IS NOT KILLED ON SCENE CHANGE
             // SAME GOES FOR THE WAIT
             TweenTo(this, .2, { healthbarAlpha: 1, persistent: true });
-            await wait(.5, true);
+            if (!await this.scene.Wait(.5, true))
+                return;
             TweenTo(this, .2, { healthbarAlpha: 0, persistent: true });
         }
     }

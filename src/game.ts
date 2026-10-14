@@ -40,7 +40,8 @@ export class Game extends Scene
     {
         if (go.name == Data.Prefab.PLAYER)
         {
-            await wait(1.5);
+            if (!await this.Wait(1.5))
+                return;
             bare.Restart();
         }
     }
