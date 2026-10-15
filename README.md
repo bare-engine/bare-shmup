@@ -1,7 +1,9 @@
 # Bare Shmup - Example
 Made with the <a href="https://github.com/bare-engine/bare-engine">Bare Engine</a>.
 <br><br>
-<img width="800" height="735" alt="ezgif-7b02862741789c56" src="https://github.com/user-attachments/assets/7dbdf41e-3184-4664-bb09-8e022b389426" />
+<b><a href="https://bare-engine.github.io/bare-shmup/">▶ Play it in your browser</a></b>
+<br><br>
+<a href="https://bare-engine.github.io/bare-shmup/"><img width="800" height="735" alt="ezgif-7b02862741789c56" src="https://github.com/user-attachments/assets/7dbdf41e-3184-4664-bb09-8e022b389426" /></a>
 
 <h2>Getting Started</h2>
 <ol>
